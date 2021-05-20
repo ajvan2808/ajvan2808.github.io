@@ -1,0 +1,125 @@
+<head>{{ ChuoiRedirect }}</head>
+<div class="product-big-title-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="product-bit-title text-center">
+					<h2>Checkout</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- End Page title area -->
+
+
+<div class="single-product-area">
+	<div class="zigzag-bottom"></div>
+	<div class="container">
+
+		<div>
+			{{ ChuoiKQ }}
+		</div>
+		
+		<form method="post">
+			<div class="product-content-right">
+				<div class="woocommerce">
+
+
+					<table class="table table-bordered" style="text-align: center;">
+						<thead>
+							<tr>
+								<th scope="col" style="text-align: center;">#</th>
+								<th scope="col" style="text-align: center;"></th>
+								<th scope="col" style="text-align: center;">Product</th>
+								<th scope="col" style="text-align: center;">Price</th>
+								<th scope="col" style="text-align: center;">Quantity</th>
+								<th scope="col" style="text-align: center;">Total</th>
+								<th scope="col" style="text-align: center;">Delete</th>
+							</tr>
+						</thead>
+
+
+						<tbody>
+
+							{% for game in DanhSachGameGioHang %}
+							<tr>
+								<th scope="row" style="text-align: center; padding: 40px;">
+									{{ DanhSachGameGioHang.index(game)+1 }}
+								</th>
+								<td class="product-thumbnail">
+									<a href="single_product.html"><img width="150" height="100" alt="{{ game['Name'] }}"
+											class="shop_thumbnail" src="/static/img/{{ game['Images'] }}"></a>
+								</td>
+								<td style="padding: 40px;">{{ game['Name'] }}</td>
+								<td style="padding: 40px;">{{ game['Price'] }}</td>
+								<td style="padding: 40px;">{{ game['So_luong'] }}</td>
+								<td style="padding: 40px;">
+									{{ '{:.2f}'.format(game['So_luong'] * game['Price']) }}
+								</td>
+								<td class="product-remove" style="padding: 40px;">
+									<a class="remove" href="#" data-toggle="modal"
+										data-target="#sp{{ game['Game_ID'] }}">
+										<i class="fa fa-trash-o" style="font-size:20px"></i>
+									</a>
+								</td>
+							</tr>
+							{% endfor %}
+							<tr class="table">
+								<th scope="row" colspan="3" style="text-align: center; font-size:medium;">Cart total</th>
+								<td colspan="4" style="font-size:medium;">{{ '{:.2f}'.format(TongThanhTien) }}</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+			<!-- end cart total table -->
+
+			<div id="payment">
+				<ul class="payment_methods methods">
+					<li class="payment_method_bacs">
+						<input type="radio" data-order_button_text="" checked="checked" value="bacs"
+							name="payment_method" class="input-radio" id="payment_method_bacs"
+							style="margin-right: 10px;">
+						<label for="payment_method_bacs">Direct Bank Transfer </label>
+						<div class="payment_box payment_method_bacs">
+							<p>Make your payment directly into our bank account. Please use your
+								Order ID as the payment reference. Your order won’t be shipped until
+								the funds have cleared in our account.</p>
+						</div>
+					</li>
+
+					<li class="payment_method_paypal">
+						<input type="radio" data-order_button_text="Proceed to PayPal" value="paypal"
+							style="margin-right: 10px;" name="payment_method" class="input-radio"
+							id="payment_method_paypal">
+						<label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark"
+								src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"
+								style="margin: 0 20px;"> <a title="What is PayPal?"
+								onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"
+								class="about_paypal" href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">
+								What is PayPal?</a>
+						</label>
+						<div style="display:none;" class="payment_box payment_method_paypal">
+							<p>Pay via PayPal; you can pay with your credit card if you don’t have a
+								PayPal account.</p>
+						</div>
+					</li>
+				</ul>
+
+				<div class="cart-button" style="box-sizing:border-box; float: left; width: 42%;">
+					<button type="submit" class="btn btn-success" style="margin-right: 20px;">
+						Place Order
+					</button>
+					<input type="hidden" name="DatHang" value="Dat_hang">
+					<button type="button" class="btn btn-primary" onclick="window.location.href='/cart';">
+						Back to cart
+					</button>
+				</div>
+
+				<div class="clear" style="margin-bottom: 140px;"></div>
+			</div>
+		</form>
+	</div>
+</div>

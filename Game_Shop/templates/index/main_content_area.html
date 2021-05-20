@@ -1,0 +1,53 @@
+<div class="maincontent-area">
+	<div class="zigzag-bottom"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="latest-product">
+					<h2 class="section-title">Latest Products</h2>
+
+					<div class="product-carousel">
+						{% for game in DanhSachGame %}
+						<div class="single-product">
+							<div class="product-f-image">
+								<img src="/static/img/{{ game['Images'] }}" alt="{{ game['Images'] }}" style="width: 227px; height: 280px; object-fit:cover;">
+							</div>
+
+							<h2><a href="single-product.html">{{ game['Name'] }}</a></h2>
+							<div class="product-carousel-price">
+								<ins>{{ '{:.2f}'.format(game['Price']) }} $ </ins> <del>{{ '{:.2f}'.format(game['Price']+10) }} $ </del>
+							</div>
+
+							<div class="new-arrival-cart">
+                                <p>
+                                    <span class="lnr lnr-cart"></span>
+                                    <form method="POST">
+                                        <button type="submit" style="margin-top: 20px; width: 120px; height: 40px; font-size: 13px; border-radius: 5px;">add <span>to </span> cart</button>
+                                        <input type="text" name="MaGame" value="{{ game['Game_ID']}}" hidden/>
+                                    </form>
+                                </p>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	input[type="submit"], button[type=submit] {
+		background: none repeat scroll 0 0 #690101;
+		border: medium none;
+		color: #fff;
+		padding: 11px 20px;
+		text-transform: uppercase;
+	}
+	input[type="submit"]:hover, button[type=submit]:hover, button[type=button]:hover {background-color: #222}
+	.single-sidebar input[type="text"] {
+		margin-bottom: 10px;
+		width: 100%;
+	}
+</style>

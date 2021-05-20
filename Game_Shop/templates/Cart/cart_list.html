@@ -1,0 +1,157 @@
+<div class="product-big-title-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="product-bit-title text-center">
+					<h2>Your Cart</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- End Page title area -->
+
+
+<div class="single-product-area">
+	<div class="zigzag-bottom"></div>
+	<div class="container">
+		<div class="product-content-right">
+			<div class="woocommerce">
+
+				<form method="post">
+					<table class="table table-bordered" style="text-align: center;">
+						<thead>
+							<tr>
+								<th scope="col" style="text-align: center;">#</th>
+								<th scope="col" style="text-align: center;"></th>
+								<th scope="col" style="text-align: center;">Product</th>
+								<th scope="col" style="text-align: center;">Price</th>
+								<th scope="col" style="text-align: center;">Quantity</th>
+								<th scope="col" style="text-align: center;">Total</th>
+								<th scope="col" style="text-align: center;">Delete</th>
+							</tr>
+						</thead>
+
+
+						<tbody>
+
+							{% for game in DanhSachGameGioHang %}
+							<tr>
+								<th scope="row" style="text-align: center; padding: 40px;">{{
+									DanhSachGameGioHang.index(game) + 1 }}</th>
+								<td class="product-thumbnail">
+									<a href="single_product.html"><img width="150" height="100" alt="{{ game['Name'] }}"
+											class="shop_thumbnail" src="/static/img/{{ game['Images'] }}"></a>
+								</td>
+								<td style="padding: 40px;">{{ game['Name'] }}</td>
+								<td style="padding: 40px;">{{ game['Price'] }}</td>
+								<td>
+									<input type="number" name="SoLuongGH{{ game['Game_ID'] }}"
+										value="{{ game['So_luong'] }}" min="0" size="4" step="1"
+										style="border-radius:8px; border: 1px outset; color: black; width: 50px; margin-top: 30px; padding-left: 10px;">
+								</td>
+								<td style="padding: 40px;">
+									{{ '{:.2f}'.format(game['So_luong'] * game['Price']) }}
+								</td>
+								<td class="product-remove" style="padding: 40px;">
+									<a class="remove" href="#" data-toggle="modal"
+										data-target="#sp{{ game['Game_ID'] }}">
+										<i class="fa fa-trash-o" style="font-size:20px"></i>
+									</a>
+								</td>
+							</tr>
+							{% endfor %}
+							<tr class="table">
+								<th scope="row" colspan="3" style="text-align: center; font-size:medium;">Cart total</th>
+								<td colspan="4" style="font-size:medium;">{{ '{:.2f}'.format(TongThanhTien) }}</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class="cart-button" style="box-sizing:border-box; float: right; width: 42%;">
+						<button type="button" class="btn btn-primary" style="margin-right: 20px;"
+							onclick="window.location.href='/';">Continue shopping</button>
+						<button type="submit" class="btn btn-primary" style="margin-right: 20px;">Update cart</button>
+						<button type="button" class="btn btn-success"
+							onclick="window.location.href='/checkout';">Checkout</button>
+						<input type="hidden" name="GioHang" value="GioHang">
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<!-- end cart total table -->
+
+		<!-- start product suggestion -->
+		<div class="row" style="margin: 150px 30px">
+			<h3> May be you interested in... </h3>
+			<div class="col-sm-6">
+				<div class="card">
+					<img width="200" height="200" alt="" class="attachment-shop_catalog wp-post-image"
+						src="/static/img/Mario.jpg">
+					<div class="card-body" style="margin: 20px 0; font-size:18px;">
+						<h4 class="card-title">Mario</h4>
+						<div class="price" style="margin-bottom: 10px;">
+							<span class="amount">40.00$</span>
+						</div>
+
+						<!--add to cart-->
+						<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22"
+							rel="nofollow" href="game-shop">
+							Product details
+						</a>
+						<input type="submit" name="MaGame" value="1" hidden style="cursor: pointer;"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="card">
+					<img width="200" height="200" alt="" class="attachment-shop_catalog wp-post-image"
+						src="/static/img/OverCooked.jpg">
+					<div class="card-body" style="margin: 20px 0; font-size:18px;">
+						<h4 class="card-title">Over Cooked</h4>
+						<div class="price" style="margin-bottom: 10px;">
+							<span class="amount">45.00$</span>
+						</div>
+
+						<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22"
+							rel="nofollow" href="/game-shop">
+							Product details
+						</a>
+						<input type="submit" name="MaGame" value="4" hidden style="cursor: pointer;"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end product suggestion -->
+	</div>
+</div>
+
+
+
+<!-- Modal xoá sản phẩm -->
+{% for game in DanhSachGameGioHang %}
+<div class="modal fade" id="sp{{ game['Game_ID'] }}" tabindex="-1" aria-labelledby="" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">{{ game['Name'] }}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Remove <strong>{{ game['Name'] }}</strong> out of cart?
+			</div>
+			<div class="modal-footer">
+				<form method="POST">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-danger">Remove</button>
+					<input type="hidden" name="XoaSPGioHang" value="{{ game['Game_ID'] }}" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}

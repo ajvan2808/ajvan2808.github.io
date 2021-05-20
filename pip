@@ -1,0 +1,5 @@
+flask_sqlalchemy
+pymysql
+flask_connector
+flask_admin
+flask_login 

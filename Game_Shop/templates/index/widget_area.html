@@ -1,0 +1,87 @@
+<div class="product-widget-area">
+	<div class="zigzag-bottom"></div>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-4">
+				<div class="single-product-widget">
+					<h2 class="product-wid-title">Top Sellers</h2>
+					<a href="" class="wid-view-more">View All</a>
+
+					{% for game in SESSION_SQLALCHEMY.query(PRODUCTS).order_by(PRODUCTS.Game_ID)[:3] %}
+					<div class="single-wid-product">
+						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
+								class="product-thumb"></a>
+						<h2><a href="single-product.html"></a>{{ game['Name'] }}</h2>
+						<div class="product-wid-rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<div class="product-wid-price">
+							<ins>{{ '{:.2f}'.format(game['Price']) }} $ </ins> <del>{{ '{:.2f}'.format(game['Price']+10) }} $ </del>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+
+
+			<div class="col-md-4">
+				<div class="single-product-widget">
+					<h2 class="product-wid-title">Recently Viewed</h2>
+					<a href="#" class="wid-view-more">View All</a>
+
+					{% for game in SESSION_SQLALCHEMY.query(PRODUCTS).order_by(PRODUCTS.Game_ID)[3:6] %}
+					<div class="single-wid-product">
+						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
+								class="product-thumb"></a>
+						<h2><a href="single-product.html">{{ game['Name'] }}</a></h2>
+						<div class="product-wid-rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<div class="product-wid-price">
+							<ins>{{ '{:.2f}'.format(game['Price']) }} $ </ins> <del>{{ '{:.2f}'.format(game['Price']+10) }} $ </del>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+
+
+			<div class="col-md-4">
+				<div class="single-product-widget">
+					<h2 class="product-wid-title">Top New</h2>
+					<a href="#" class="wid-view-more">View All</a>
+
+					{% for game in SESSION_SQLALCHEMY.query(PRODUCTS).order_by(PRODUCTS.Game_ID)[6:9] %}
+					<div class="single-wid-product">
+						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
+								class="product-thumb"></a>
+						<h2><a href="single-product.html">{{ game['Name'] }}</a></h2>
+						<div class="product-wid-rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<div class="product-wid-price">
+							<ins>{{ '{:.2f}'.format(game['Price']) }} $ </ins> <del>{{ '{:.2f}'.format(game['Price']+10) }} $ </del>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
