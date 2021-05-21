@@ -6,6 +6,16 @@ from Game_Shop.library.xl_san_pham import *
 def game_shop():
 	danh_sach_game = doc_danh_sach_game()
 	danh_sach_game_gio_hang = []
+	khach_hang_dang_nhap = []
+
+	chuoi_html= ''
+	chuoi_khach_hang = ''
+	if session.get('session_customer'):
+		khach_hang_dang_nhap = session['session_customer']
+		chuoi_html = '<a href="/log-out">Logout</a>'
+		chuoi_khach_hang = '<li><a href="/cart"><i class="fa fa-user"></i>'+ khach_hang_dang_nhap['Fullname'] +'</a></li>'
+	else:
+		chuoi_html = '<a href="/log-in">Login</a>'
 
 	if request.form.get('MaGame'):
 		if session.get('session_GioHang'):
@@ -33,6 +43,6 @@ def game_shop():
 	return render_template('GameShop/game_shop.html', DanhSachGame=danh_sach_game, SESSION_SQLALCHEMY=session_sqlalchemy, PRODUCTS=Products,
 								DanhSachGameGioHang=danh_sach_game_gio_hang,
 								TongThanhTien=tong_thanh_tien,
-								TongSoLuong=tong_so_luong)
+								TongSoLuong=tong_so_luong, ChuoiHTML=Markup(chuoi_html), ChuoiKhachHang=Markup(chuoi_khach_hang))
 
 	

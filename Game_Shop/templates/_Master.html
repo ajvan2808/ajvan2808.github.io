@@ -37,9 +37,8 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> For Admin </a></li>
-                            <li><a href="/cart"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="/log-in"><i class="fa fa-user"></i> Login </a></li>
+                            <li><a href="/admin/log-in"><i class="fa fa-user"></i> Admin Login</a></li>
+                            {{ ChuoiKhachHang }}
                         </ul>
                     </div>
                 </div>
@@ -67,7 +66,8 @@
                 </div>
             </div>
         </div>
-    </div> <!-- End header area -->
+    </div> 
+    <!-- End header area -->
     
     <div class="site-branding-area">
         <div class="container">
@@ -114,7 +114,7 @@
     load trang như header, footer -->
 
 
-    {% include 'general_parts/menu.html' %}
+    <!--  include 'general_parts/menu.html'  -->
     <!-- End mainmenu area -->
     
     <!-- block nội dung chính thay đổi theo từng danh mục, block này sẽ display nội dung từ các module khác -->
@@ -122,8 +122,7 @@
 
     {% endblock %}
     
-    
-    
+    <!-- Footer start here -->
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

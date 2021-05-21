@@ -1,6 +1,8 @@
 {% extends '_Master.html' %}
 
 {% block noi_dung_chinh %}
+{% include 'index/menu.html' %}
+
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -22,18 +24,17 @@
                 <form method="POST">
                     <div class="form-group" style="font-size: medium;">
                         <label>Username</label>
-                        <input type="text" class="form-control" name="UserName">
+                        <input type="text" class="form-control" name="UserName" value="userunknown">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small>
                     </div>
                     <div class="form-group" style="font-size: medium;">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="Passwrd">
+                        <input type="password" class="form-control" name="Passwrd" value="11223344">
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="font-size: medium;">Log in</button>
                 </form>
-
                 <br>
                 <div>{{ ChuoiKQ }}</div>
             </div>

@@ -6,6 +6,7 @@ from Game_Shop.library.xl_khach_hang import *
 def customer_log_in():
 	danh_sach_game = doc_danh_sach_game()
 	danh_sach_game_gio_hang = []
+	chuoi_html = '<a href="/log-in">Login</a>'
 
 	if session.get('session_GioHang'):
 		danh_sach_game_gio_hang = session['session_GioHang']['Gio_hang']
@@ -20,19 +21,19 @@ def customer_log_in():
 			session['session_customer'] = kq
 			return redirect(url_for('index'))
 		else:
-			chuoi_kq = 'Failed to log-in. Please check Username and Password!'
+			chuoi_kq = '<br><a class="alert alert-danger"> Failed to log-in. Please check your Username and Password!</a>'
 
 	tong_thanh_tien, tong_so_luong = thong_tin_gio_hang(danh_sach_game_gio_hang)
 	if session.get('session_GioHang'):
 		tong_thanh_tien, tong_so_luong = thong_tin_gio_hang(session['session_GioHang']['Gio_hang'])
 		danh_sach_game_gio_hang = session['session_GioHang']['Gio_hang']
 
-	return render_template('Customer/log_in.html', DanhSachGame=danh_sach_game, SESSION_SQLALCHEMY=session_sqlalchemy, PRODUCTS=Products,
+	return render_template('Customer/log_in.html', DanhSachGame=danh_sach_game,
 								DanhSachGameGioHang=danh_sach_game_gio_hang,
 								TongThanhTien=tong_thanh_tien,
-								TongSoLuong=tong_so_luong, ChuoiKQ=chuoi_kq)
+								TongSoLuong=tong_so_luong, ChuoiKQ=(Markup(chuoi_kq)))
 
 @app.route('/log-out')
 def customer_log_out():
     session.pop('session_customer', None)
-    return redirect(url_for('customer_log_in'))
+    return redirect(url_for('index'))

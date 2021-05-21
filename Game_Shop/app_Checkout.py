@@ -6,12 +6,21 @@ from datetime import datetime
 def checkout():
 	danh_sach_game = doc_danh_sach_game()
 	danh_sach_game_gio_hang = []
+	khach_hang_dang_nhap = []
+
+	chuoi_html= ''
+	chuoi_khach_hang = ''
+	if session.get('session_customer'):
+		khach_hang_dang_nhap = session['session_customer']
+		chuoi_html = '<a href="/log-out">Logout</a>'
+		chuoi_khach_hang = '<li><a href="/cart"><i class="fa fa-user"></i>'+ khach_hang_dang_nhap['Fullname'] +'</a></li>'
+	else:
+		chuoi_html = '<a href="/log-in">Login</a>'
 
 	if session.get('session_GioHang'):
 		danh_sach_game_gio_hang = session['session_GioHang']['Gio_hang']
 		
 	chuoi_kq = ''
-	chuoi_redirect = ''
 	if request.form.get('DatHang'):
 		if session.get('session_customer') is None:
 			chuoi_kq = '<div class="alert alert-warning" role="alert" style="font-size: 16px;">You are not log in. <a href="/log-in">Log in now </a></div>'
@@ -31,9 +40,13 @@ def checkout():
 
 			session.pop('session_GioHang', None)
 			danh_sach_game_gio_hang = []
-			chuoi_kq = '<div class="alert alert-success" role="alert" style="font-size: 16px;">Order succeed. Thank you!</div>'
-			chuoi_redirect = '<meta http-equiv = "refresh" content = "1; url = /" />'
-	
+			chuoi_kq = '''
+			<div class="alert alert-success" role="alert" style="font-size: 16px;">
+				Order succeed. Thank you!   
+				<a href="/">Homepage</a>
+			</div>
+			'''
+
 	tong_thanh_tien, tong_so_luong = thong_tin_gio_hang(danh_sach_game_gio_hang)
 	if session.get('session_GioHang'):
 		tong_thanh_tien, tong_so_luong = thong_tin_gio_hang(session['session_GioHang']['Gio_hang'])
@@ -42,4 +55,5 @@ def checkout():
 	return render_template('Checkout/checkout.html', DanhSachGame=danh_sach_game, SESSION_SQLALCHEMY=session_sqlalchemy, PRODUCTS=Products,
 								DanhSachGameGioHang=danh_sach_game_gio_hang,
 								TongThanhTien=tong_thanh_tien,
-								TongSoLuong=tong_so_luong, ChuoiKQ=Markup(chuoi_kq), ChuoiRedirect=Markup(chuoi_redirect))
+								TongSoLuong=tong_so_luong, ChuoiKQ=Markup(chuoi_kq),
+								ChuoiHTML=Markup(chuoi_html), ChuoiKhachHang=Markup(chuoi_khach_hang))

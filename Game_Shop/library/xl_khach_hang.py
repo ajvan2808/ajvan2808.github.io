@@ -1,5 +1,6 @@
 from Game_Shop.library.xl_model import *
 from sqlalchemy.orm import sessionmaker
+from Game_Shop.library.xl_chung import *
 
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
@@ -23,4 +24,9 @@ def khach_hang_dang_nhap(danh_sach_khach_hang, username, password):
 	danh_sach = list(filter(lambda khach_hang: khach_hang['Username']== username and khach_hang['Password']== password, danh_sach_khach_hang))
 	kq = danh_sach[0] if len(danh_sach) > 0 else None
 	return kq 
-	
+
+def chuoi_thong_tin_khach_hang(username):
+	chuoi_html = ''' 
+	<li><a href="#"><i class="fa fa-user"></i>'''+ username +'''</a></li>
+	'''
+	return Markup(chuoi_html)

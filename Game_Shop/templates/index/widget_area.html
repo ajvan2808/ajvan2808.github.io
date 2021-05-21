@@ -8,7 +8,7 @@
 					<h2 class="product-wid-title">Top Sellers</h2>
 					<a href="" class="wid-view-more">View All</a>
 
-					{% for game in SESSION_SQLALCHEMY.query(PRODUCTS).order_by(PRODUCTS.Game_ID)[:3] %}
+					{% for game in DanhSachGame[:3] %}
 					<div class="single-wid-product">
 						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
 								class="product-thumb"></a>
@@ -35,7 +35,7 @@
 					<h2 class="product-wid-title">Recently Viewed</h2>
 					<a href="#" class="wid-view-more">View All</a>
 
-					{% for game in SESSION_SQLALCHEMY.query(PRODUCTS).order_by(PRODUCTS.Game_ID)[3:6] %}
+					{% for game in DanhSachGame[3:6] %}
 					<div class="single-wid-product">
 						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
 								class="product-thumb"></a>
@@ -62,7 +62,7 @@
 					<h2 class="product-wid-title">Top New</h2>
 					<a href="#" class="wid-view-more">View All</a>
 
-					{% for game in SESSION_SQLALCHEMY.query(PRODUCTS).order_by(PRODUCTS.Game_ID)[6:9] %}
+					{% for game in DanhSachGame[6:9] %}
 					<div class="single-wid-product">
 						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
 								class="product-thumb"></a>

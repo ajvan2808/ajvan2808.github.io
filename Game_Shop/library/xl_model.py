@@ -1,9 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String, Float, create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-from flask_login import UserMixin
+from sqlalchemy.orm import relationship, configure_mappers
 from sqlalchemy.sql.sqltypes import DateTime
+from flask_login import UserMixin
 
 
 Base = declarative_base()
@@ -57,6 +57,13 @@ class Order_detail(Base):
     Order_total = Column(Integer, nullable=False)
     product = relationship(Products, backref='order_detail')
     order = relationship(Order, backref='Order_detail')
+
+class ShopAdmin(Base, UserMixin):
+    __tablename__ = 'ShopAdmin'
+    id = Column(Integer, primary_key= True) 
+    Fullname_Ad = Column(String(200), nullable=False)
+    Username_Ad = Column(String(50), nullable=False) 
+    Password_Ad = Column(String(50), nullable=False)
 
 
 connect_var = 'mysql+pymysql://root:root@localhost:8889/gameshop'

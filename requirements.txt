@@ -1,0 +1,7 @@
+Flask
+gunicorn
+flask-sqlalchemy
+pymysql
+flask-admin
+flask-login
+Pillow
