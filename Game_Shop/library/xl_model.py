@@ -56,7 +56,7 @@ class Order_detail(Base):
     Game_price = Column(Integer, nullable=False)
     Order_total = Column(Integer, nullable=False)
     product = relationship(Products, backref='order_detail')
-    order = relationship(Order, backref='Order_detail')
+    order = relationship(Order, backref='order_detail')
 
 class ShopAdmin(Base, UserMixin):
     __tablename__ = 'ShopAdmin'
@@ -66,6 +66,6 @@ class ShopAdmin(Base, UserMixin):
     Password_Ad = Column(String(50), nullable=False)
 
 
-connect_var = 'mysql+pymysql://root:root@localhost:8889/gameshop'
+connect_var = 'mysql+pymysql://root:root@localhost:3306/gameshop'
 engine = create_engine(connect_var)
 Base.metadata.create_all(engine)
