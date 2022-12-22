@@ -1,6 +1,6 @@
 from flask import request, render_template, redirect, url_for, session, Markup
 from Game_Shop import app
-from mysql.connector import connect
+# from mysql.connector import connect
 from Game_Shop.library.xl_json import *
 import pymysql
 
@@ -45,4 +45,4 @@ conn_mysql = pymysql.connect(
 # 									game['Category']['ID']))
 # 	conn_mysql.commit()
 
-# conn_mysql.close()
+conn_mysql.close()

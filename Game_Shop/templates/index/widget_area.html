@@ -6,13 +6,13 @@
 			<div class="col-md-4">
 				<div class="single-product-widget">
 					<h2 class="product-wid-title">Top Sellers</h2>
-					<a href="" class="wid-view-more">View All</a>
+					<a href="/game-shop" class="wid-view-more">View All</a>
 
 					{% for game in DanhSachGame[:3] %}
 					<div class="single-wid-product">
-						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
+						<a href="/game-shop"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
 								class="product-thumb"></a>
-						<h2><a href="single-product.html"></a>{{ game['Name'] }}</h2>
+						<h2><a href="/game-shop"></a>{{ game['Name'] }}</h2>
 						<div class="product-wid-rating">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
@@ -37,9 +37,9 @@
 
 					{% for game in DanhSachGame[3:6] %}
 					<div class="single-wid-product">
-						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
+						<a href="/game-shop"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
 								class="product-thumb"></a>
-						<h2><a href="single-product.html">{{ game['Name'] }}</a></h2>
+						<h2><a href="/game-shop">{{ game['Name'] }}</a></h2>
 						<div class="product-wid-rating">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
@@ -64,9 +64,9 @@
 
 					{% for game in DanhSachGame[6:9] %}
 					<div class="single-wid-product">
-						<a href="single-product.html"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
+						<a href="/game-shop"><img src="/static/img/{{ game['Images'] }}" alt="{{ game['Name'] }}"
 								class="product-thumb"></a>
-						<h2><a href="single-product.html">{{ game['Name'] }}</a></h2>
+						<h2><a href="/game-shop">{{ game['Name'] }}</a></h2>
 						<div class="product-wid-rating">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
